@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="row mx-lg-n5">
+        <div class="col py-3 px-lg-5 ">  <a class="btn btn-outline-info" href="{% url 'apply' %}">
+            Start New Application</a>
+        </div>
+        <div class="col py-3 px-lg-5 "><a class="btn btn-outline-info" href="{% url 'signin' %}">
+          Login</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <img src="https://s1.1zoom.me/big3/109/336538-svetik.jpg"  width="600px" height="400px" alt="">
+    </div>
+  </div>
+{% endblock %}
