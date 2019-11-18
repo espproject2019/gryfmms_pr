@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'bootstrap4',
+    'loans'
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gryfmms.wsgi.application'
-
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'espproject2019@gmail.com'
+EMAIL_HOST_PASSWORD = 'Esp_Project@2019'
+DEFAULT_FROM_EMAIL = 'Your name'
+DEFAULT_TO_EMAIL = 'Your email'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -131,3 +138,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]

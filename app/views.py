@@ -12,17 +12,8 @@ def submitApplication(request):
 	# all post request data
 	data = request.POST.dict()
 
-	# save to LoanRequest  table
-	loan = LoanRequests(
-		dateCreated = timezone.now(),
-		userID = 123,
-	)
-	# actual saving
-	loan.save()
-
 	# save to BorrowerInfo  table
 	borrower = BorrowerInfo(
-		loanNumber = loan,
 		firstName = data.get('firstName'),
 	    lastName = data.get('lastName'),
 	    email = data.get('email')
@@ -31,7 +22,6 @@ def submitApplication(request):
 
 	# save to LoanInfo  table
 	loanInfo = LoanInfo(
-		loanNumber = loan,
 		program = data.get('loanprogram'),
 	    amount = data.get('loanamount'),
 	    fico = data.get('fico'),
@@ -41,13 +31,24 @@ def submitApplication(request):
 
 	# save to PropertyInfo  table
 	propertyinfo = PropertyInfo(
-		loanNumber = loan,
 		address = data.get('address'),
 	    country = data.get('country'),
 	    state = data.get('state'),
 	    zip = data.get('zip')
 	)
 	propertyinfo.save()
+
+	# save to LoanRequest  table
+	loan = LoanRequests(
+		dateCreated = timezone.now(),
+		dateSubmitted = timezone.now(),
+		userID = 123,
+		borrower = borrower,
+		loanInfo = loanInfo,
+		property = propertyinfo
+	)
+	# actual saving
+	loan.save()
 
 	return render(request, 'app/apply.html')
 

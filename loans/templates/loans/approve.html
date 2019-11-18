@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Loans</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-header text-info">Loans to Approve</h1>
+      <div class="">
+        <form  method="post" action="submitForApproval">
+          {% csrf_token %}
+          <table class="table table-striped" width="600">
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Loan Amount</th>
+              <th scope="col">Date Submitted</th>
+              <th scope="col">Loan Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for loan in loans %}
+              <tr>
+                <td>{{ loan.borrower.firstName}}&nbsp;{{loan.borrower.lastName}}</td>
+                <td>{{ loan.loanInfo.amount }}</td>
+                <td>{{ loan.dateSubmitted }}</td>
+                <td>
+                  <u><input type='submit' name='loanNumber' value='{{loan.loanNumber}}'></u>
+                </td>
+              </tr>
+            {% endfor %}
+            <tbody>
+            </table>
+
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

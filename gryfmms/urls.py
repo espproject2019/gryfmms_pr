@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app import views
+from app import views as vapp
+from loans import views as vloans
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('apply/', views.apply, name='apply'),
-    path('signin/', views.signin, name='signin'),
-    path('apply/submitApplication', views.submitApplication, name='submitApplication')
+    path('', vapp.home, name='home'),
+    path('apply/', vapp.apply, name='apply'),
+    path('signin/', vapp.signin, name='signin'),
+    path('apply/submitApplication', vapp.submitApplication, name='submitApplication'),
 
+    # new loans apply
+    path('loans/', vloans.loans, name='loans'),
+    path('loans/submitForApproval', vloans.submitForApproval, name='submitForApproval'),
 ]
